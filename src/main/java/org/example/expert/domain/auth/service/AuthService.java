@@ -24,15 +24,15 @@ public class AuthService {
     private final JwtUtil jwtUtil;
 
     @Transactional
-    public SignupResponse signup(SignupRequest signupRequest) {
+    public SignupResponse signup(SignupRequest signupRequest) { //회원가입
 
-        String encodedPassword = passwordEncoder.encode(signupRequest.getPassword());
-
-        UserRole userRole = UserRole.of(signupRequest.getUserRole());
-
-        if (userRepository.existsByEmail(signupRequest.getEmail())) {
+        if (userRepository.existsByEmail(signupRequest.getEmail())) {//회원가입할 이메일이 기존에 존재하는지 확인
             throw new InvalidRequestException("이미 존재하는 이메일입니다.");
         }
+
+        String encodedPassword = passwordEncoder.encode(signupRequest.getPassword());//비밀번호 암호화
+
+        UserRole userRole = UserRole.of(signupRequest.getUserRole());//비밀번호 패턴 정규화 확인?
 
         User newUser = new User(
                 signupRequest.getEmail(),
