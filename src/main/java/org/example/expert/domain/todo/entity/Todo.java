@@ -23,6 +23,8 @@ public class Todo extends Timestamped {
     private String contents;
     private String weather;
 
+    //todo >> user
+    //user >> todo 이거 안되어 있음
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

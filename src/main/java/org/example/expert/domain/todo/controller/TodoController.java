@@ -27,7 +27,7 @@ public class TodoController {
     }
 
     @GetMapping("/todos")
-    public ResponseEntity<Page<TodoResponse>> getTodos(
+    public ResponseEntity<Page<TodoResponse>> getTodos(//연관된 데이터를 개별적으로 가져오는 경우, N+1 문제 발생
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
